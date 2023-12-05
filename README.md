@@ -44,12 +44,6 @@ Download and use the scripts:
 
 Now you can just copy the things you want to backup in your own node (with scp/ssh using the proper node user and key), or connect to one of the other node with the key you submitted during the configuration.
 
-## TODO
-
-List:
-- [ ] save `<DIR_PATH>` and `<NODE_NAME>` in a file in order to remove the necessity to pass those variables as arguments
-- [ ] add full guide for Raspberry Pi
-
 ## Useful Stuff
 
 Useful configurations:
