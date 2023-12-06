@@ -8,6 +8,10 @@ NODE_NAME=$2
 
 # General
 apt update && apt upgrade -y
+touch /root/dbotor.conf
+chmod 600 /root/dbotor.conf
+grep -qxF "DIR_PATH=$1" /root/dbotor.conf || echo "DIR_PATH=$1" >> /root/dbotor.conf
+grep -qxF "NODE_NAME=$2" /root/dbotor.conf || echo "NODE_NAME=$2" >> /root/dbotor.conf
 
 # Firewall
 apt install -y ufw fail2ban

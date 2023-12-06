@@ -36,11 +36,11 @@ Download and use the scripts:
     - `<DIR_PATH>` is the directory in which you want to store all the nodes data
     - `<NODE_NAME>` is the name you want to give to your dbotor node and will also be used as the user name in the ssh/rsync connections between nodes. This does not represent the hostname.
     - you will be asked to enter the ssh public key you want to use to connect to this node (in order to ssh/scp into it) 
-2. `sudo ./add_node.sh <DIR_PATH> <NODE_NAME>` to prepare your node to host another node's data
+2. `sudo ./add_node.sh` to prepare your node to host another node's data
     - you will be asked to enter the ssh public key the other node will use to connect to this node (in order to rsync data into it) and another ssh public key that will be used by the other node's owner to retrieve data (by scp/ssh-ing into it)
-3. `sudo ./connect_to_node.sh <DIR_PATH> <MY_NODE_NAME> <OTHER_NODE_NAME>` to prepare your node to be able to sync data towards another node.
-    - arguments are self explenatory.
-    - follow what the script ask you. You will need to run this together with the `add_node.sh` script on the other node.
+3. `sudo ./connect_to_node.sh <OTHER_NODE_NAME>` to prepare your node to be able to sync data towards another node.
+    - `<OTHER_NODE_NAME>` is the name the other node chose during setup.
+    - follow what the script tells you. You will need to run this together with the `add_node.sh` script on the other node.
 
 Now you can just copy the things you want to backup in your own node (with scp/ssh using the proper node user and key), or connect to one of the other node with the key you submitted during the configuration.
 

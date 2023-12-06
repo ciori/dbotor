@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Usage: sudo ./add_node.sh <DIR_PATH> <NODE_NAME>
+# Usage: sudo ./add_node.sh
 
 # Variables
-DIR_PATH=$1
-NODE_NAME=$2
+source /root/dbotor.conf
 
 # Create user
 mkdir -p ${DIR_PATH}/${NODE_NAME}
