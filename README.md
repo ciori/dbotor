@@ -71,8 +71,17 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
         apt -y upgrade
         apt -y autoremove
         apt install -y vim tree git lvm2
-        swapoff -a
         ```
+    - increase sd card lifespan:
+        - `swapoff -a`
+        - add/modify these in `vim /etc/fstab` (also remove swap mount point if present):
+            ```
+            tmpfs /tmp tmpfs defaults,noatime,nosuid,size=100m 0 0
+            tmpfs /var/tmp tmpfs defaults,noatime,nosuid,size=30m 0 0
+            tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=100m 0 0
+            tmpfs /var/run tmpfs defaults,noatime,nosuid,mode=0755,size=2m 0 0
+            tmpfs /var/spool/mqueue tmpfs defaults,noatime,nosuid,mode=0700,gid=12,size=30m 0 0
+            ```
     - reboot, login and switch to the root user again
 
 3. Ssh configuration:
