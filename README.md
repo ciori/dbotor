@@ -46,14 +46,64 @@ Now you can just copy the things you want to backup in your own node (with scp/s
 
 ## Useful Stuff
 
-Useful configurations:
-- `swapoff -a`
+Useful configurations and secondary guides.
 
 ### Raspberry Pi OS Preparation
 
 Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
 
-Steps:
-- ...
-- disk configuration with lvm volumes for data and var:
-    - ...
+1. Create SD card:
+    - use rpi imager and press `crtl + shift + x` to customize install
+    - set hostname
+    - set username and password for your normal management user (you will change the password later)
+    - set locale
+    - enable ssh with your public key
+    - flash the os into the sd card (64bit lite version)
+
+2. Initial configuration:
+    - start the pi with the sd card and the ssd inserted
+    - login with the configured user and ssh key
+    - change password: `passwd <USER>`
+    - become root: `sudo -i`
+    - execute:
+        ```
+        apt update
+        apt -y upgrade
+        apt -y autoremove
+        apt install -y vim tree git lvm2
+        swapoff -a
+        ```
+    - reboot, login and switch to the root user again
+
+3. Ssh configuration:
+    ```
+    sed -i 's/PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
+    sed -i 's/PasswordAuthentication.*/PasswordAuthentication no/g' /etc/ssh/sshd_config
+    systemctl restart ssh
+    ```
+
+4. Firewall configuration:
+    ```
+    apt install -y ufw fail2ban
+    ufw allow ssh
+    ufw enable
+    systemctl enable --now ufw
+    ```
+
+5. Disks configuration:
+    - clean the disk and create a partition with: `sudo cfdisk /dev/<...>`
+    - check the uuid of your new partition with `lsblk -f`
+    - set uuid as env variable: `export UUID=...`
+    - set mount path for the data volume: `export DIR=...` (where you will then setup dbotor)
+    - setup lvm volumes:
+        ```
+        pvcreate /dev/disk/by-uuid/${UUID}
+        vgcreate datavg /dev/disk/by-uuid/${UUID}
+        lvcreate -n datalv -L 850G datavg
+        mkfs.ext4 /dev/datavg/datalv
+        mkdir ${DIR}
+        mount /dev/datavg/datalv ${DIR}
+        echo "/dev/datavg/datalv ${DIR} ext4 defaults,noatime,discard 0 0" >> /etc/fstab
+        systemctl daemon-reload
+        mount -a
+        ```
