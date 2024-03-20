@@ -21,7 +21,7 @@ systemctl enable --now ufw
 
 # Create user
 mkdir -p ${DIR_PATH}/${NODE_NAME}
-useradd -m -d ${DIR_PATH}/${NODE_NAME} -s /bin/bash --disabled-password ${NODE_NAME}
+useradd -m -d ${DIR_PATH}/${NODE_NAME} -s /bin/bash --gecos "" --disabled-password ${NODE_NAME}
 cd ${DIR_PATH}/${NODE_NAME}
 
 # Configure user ssh access
