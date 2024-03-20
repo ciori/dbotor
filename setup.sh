@@ -16,7 +16,7 @@ grep -qxF "NODE_NAME=$2" /root/dbotor.conf || echo "NODE_NAME=$2" >> /root/dboto
 # Firewall
 apt install -y ufw fail2ban
 ufw allow ssh
-ufw enable
+echo "y" | sudo ufw enable
 systemctl enable --now ufw
 
 # Create user
