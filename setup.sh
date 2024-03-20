@@ -37,11 +37,12 @@ chown ${NODE_NAME}:${NODE_NAME} -R ${DIR_PATH}/${NODE_NAME}
 apt install -y tor
 cp /etc/tor/torrc /etc/tor/torrc.backup
 cat <<EOF > /etc/tor/torrc
-User tor
+User debian-tor
 Log notice syslog
 DataDirectory /var/lib/tor
 
 HiddenServiceDir /var/lib/tor/${NODE_NAME}/
+HiddenServiceVersion 3
 HiddenServicePort 22 127.0.0.1:22
 EOF
 systemctl restart tor
