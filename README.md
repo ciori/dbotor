@@ -102,12 +102,11 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
 5. Disks configuration:
     - clean the disk and create a partition with: `sudo cfdisk /dev/<...>`
     - check the uuid of your new partition with `lsblk -f`
-    - set uuid as env variable: `export UUID=...`
     - set mount path for the data volume: `export DIR=...` (where you will then setup dbotor)
     - setup lvm volumes:
         ```
-        pvcreate /dev/disk/by-uuid/${UUID}
-        vgcreate datavg /dev/disk/by-uuid/${UUID}
+        pvcreate /dev/disk/by-uuid/<...>
+        vgcreate datavg /dev/disk/by-uuid/<...>
         lvcreate -n datalv -L 850G datavg
         mkfs.ext4 /dev/datavg/datalv
         mkdir ${DIR}
