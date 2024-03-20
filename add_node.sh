@@ -7,7 +7,7 @@ source /root/dbotor.conf
 
 # Create user
 mkdir -p ${DIR_PATH}/${NODE_NAME}
-useradd -m -d ${DIR_PATH}/${NODE_NAME} -s /bin/bash --disabled-password ${NODE_NAME}
+adduser --home ${DIR_PATH}/${NODE_NAME} --shell /bin/bash --gecos "" --disabled-password ${NODE_NAME}
 cd ${DIR_PATH}/${NODE_NAME}
 
 # Configure ssh access for the other node and owner
