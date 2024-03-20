@@ -53,7 +53,7 @@ cat <<EOF > sync.sh
 #!/bin/bash
 torify rsync -Pa -e "ssh -i $2" $1 $3
 EOF
-chmox 700 sync.sh
+chmod 700 sync.sh
 
 # Output
 echo ""
