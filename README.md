@@ -53,12 +53,12 @@ Useful configurations and secondary guides.
 Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
 
 1. Create SD card:
-    - use rpi imager and press `crtl + shift + x` to customize install
-    - set hostname
-    - set username and password for your normal management user (you will change the password later)
-    - set locale
+    - use rpi imager and press `crtl + shift + x` to customize install:
+        - set hostname
+        - set username and password for your normal management user (you will change the password later)
+        - set locale
     - enable ssh with your public key
-    - flash the os into the sd card (64bit lite version)
+    - flash the os (Raspberry Pi OS 64bit Lite) into the sd card
 
 2. Initial configuration:
     - start the pi with the sd card and the ssd inserted
@@ -118,3 +118,5 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
         ```
 
 6. Remove sudo without password: `rm -rf /etc/sudoers.d/010_pi-nopasswd`
+
+7. Set a static IP with: `nmtui`
