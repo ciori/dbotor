@@ -67,9 +67,9 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
     - become root: `sudo -i`
     - execute:
         ```
-        apt update
-        apt -y upgrade
-        apt -y autoremove
+        apt update -y
+        apt upgrade -y
+        apt autoremove -y
         apt install -y vim tree git lvm2
         ```
     - increase sd card lifespan:
