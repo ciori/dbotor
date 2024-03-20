@@ -82,12 +82,13 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
             tmpfs /var/run tmpfs defaults,noatime,nosuid,mode=0755,size=2m 0 0
             tmpfs /var/spool/mqueue tmpfs defaults,noatime,nosuid,mode=0700,gid=12,size=30m 0 0
             ```
+        - `systemctl daemon-reload`
     - reboot, login and switch to the root user again
 
 3. Ssh configuration:
     ```
-    sed -i 's/PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
-    sed -i 's/PasswordAuthentication.*/PasswordAuthentication no/g' /etc/ssh/sshd_config
+    sed -i "/PermitRootLogin/c\PermitRootLogin no" /etc/ssh/sshd_config
+    sed -i "/PasswordAuthentication/c\PasswordAuthentication no" /etc/ssh/sshd_config
     systemctl restart ssh
     ```
 
@@ -118,4 +119,6 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
 
 6. Remove sudo without password: `rm -rf /etc/sudoers.d/010_pi-nopasswd`
 
-7. Set a static IP with: `nmtui`
+7. Set a static IP with:
+    - `nmtui`
+    - reboot the system
