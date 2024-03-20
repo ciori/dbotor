@@ -116,3 +116,5 @@ Follow this if you want to start from a Raspberry Pi with an SD card and an SSD.
         systemctl daemon-reload
         mount -a
         ```
+
+6. Remove sudo without password: `rm -rf /etc/sudoers.d/010_pi-nopasswd`
